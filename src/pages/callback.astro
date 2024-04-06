@@ -1,0 +1,52 @@
+---
+import { redirectUri } from "@/constants";
+const { PUBLIC_SPOTIFY_CLIENT_ID, PUBLIC_SPOTIFY_CLIENT_SECRET } = import.meta
+  .env;
+
+const encodedAuth = Buffer.from(
+  `${PUBLIC_SPOTIFY_CLIENT_ID}:${PUBLIC_SPOTIFY_CLIENT_SECRET}`
+).toString("base64");
+---
+
+<p>Wait a moment...</p>
+
+<script
+  define:vars={{
+    baseUrl: import.meta.env.BASE_URL,
+    encodedAuth,
+    redirectUri,
+  }}
+  is:inline
+  type="module"
+>
+  const params = new URLSearchParams(window.location.search);
+
+  const code = params.get("code");
+
+  if (code) {
+    const res = await fetch(`https://accounts.spotify.com/api/token`, {
+      body: new URLSearchParams({
+        grant_type: "authorization_code",
+        code,
+        redirect_uri: redirectUri,
+      }),
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${encodedAuth}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    if (res.ok) {
+      /**
+       * @type {import("@/types").ApiTokenRes}
+       */
+      const data = await res.json();
+
+      localStorage.setItem("auth_object", JSON.stringify(data));
+    }
+    window.location.href = `${baseUrl}/stats`;
+  } else {
+    window.location.href = baseUrl;
+  }
+</script>
