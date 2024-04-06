@@ -1,5 +1,5 @@
-const { DEV, BASE_URL } = import.meta.env;
+const { DEV, BASE_URL, SITE } = import.meta.env;
 
 export const redirectUri = DEV
   ? "http://localhost:4321/spotify-stats/callback"
-  : `${BASE_URL}/callback`;
+  : `${SITE}${BASE_URL}/callback`;
