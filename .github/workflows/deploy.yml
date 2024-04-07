@@ -21,9 +21,6 @@ jobs:
       - name: Checkout repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload site
-        env:
-          PUBLIC_SPOTIFY_CLIENT_ID: ${{ vars.PUBLIC_SPOTIFY_CLIENT_ID }}
-          PUBLIC_SPOTIFY_CLIENT_SECRET: ${{ vars.PUBLIC_SPOTIFY_CLIENT_SECRET }}
         uses: withastro/action@v2
         with:
           package-manager: pnpm@latest # Action doesn't detect pnpm version automatically
