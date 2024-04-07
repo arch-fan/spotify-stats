@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  PUBLIC_SPOTIFY_CLIENT_ID: ${{ vars.PUBLIC_SPOTIFY_CLIENT_ID }}
+  PUBLIC_SPOTIFY_CLIENT_SECRET: ${{ vars.PUBLIC_SPOTIFY_CLIENT_SECRET }}
+
 permissions:
   contents: read
   pages: write
