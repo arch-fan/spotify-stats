@@ -3,7 +3,7 @@ type ReqTimeRanges = `${"short" | "medium" | "long"}_term`;
 
 let _tracksData = $state<SpotifyApi.UsersTopTracksResponse>();
 let _artistsData = $state<SpotifyApi.UsersTopArtistsResponse>();
-let _type = $state<ReqTypes>("artists");
+let _type = $state<ReqTypes>("tracks");
 let _timeRange = $state<ReqTimeRanges>("short_term");
 
 export default {
