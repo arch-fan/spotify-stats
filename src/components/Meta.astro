@@ -4,7 +4,9 @@ interface Props {
   description: string;
 }
 
-const og = `${import.meta.env.BASE_URL}/og.png`;
+const { SITE, BASE_URL } = import.meta.env;
+
+const og = `${SITE}${BASE_URL}/og.png`;
 
 const { title, description } = Astro.props;
 ---
