@@ -5,17 +5,26 @@ interface Props {
 }
 
 const { SITE, BASE_URL } = import.meta.env;
+const globalUrl = SITE + BASE_URL;
 
-const og = `${SITE}${BASE_URL}/og.png`;
+const og = `${globalUrl}/og.png`;
 
 const { title, description } = Astro.props;
 ---
 
 <>
-  <meta property="og:image" content={og} />
-  <meta name="twitter:image" content={og} />
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content={globalUrl} />
+  <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
+  <meta property="og:image" content={og} />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content={new URL(globalUrl).hostname} />
+  <meta property="twitter:url" content={globalUrl} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={og} />
 </>
