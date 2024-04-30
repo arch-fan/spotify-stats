@@ -42,21 +42,21 @@
 </script>
 
 <main class="flex flex-col gap-2 w-full">
-  <div class="w-full flex font-bold justify-center gap-2">
+  <div class="w-full flex font-bold p-2 justify-between gap-2">
     <div
       class="grid grid-cols-3 w-fit border [&_*]:p-1 [&_*]:transition-all rounded-lg overflow-hidden"
     >
       <button
         class:active={store.timeRange === "short_term"}
-        on:click={() => (store.timeRange = "short_term")}>1M</button
+        on:click={() => (store.timeRange = "short_term")}>1 Month</button
       >
       <button
         class:active={store.timeRange === "medium_term"}
-        on:click={() => (store.timeRange = "medium_term")}>3M</button
+        on:click={() => (store.timeRange = "medium_term")}>3 Months</button
       >
       <button
         class:active={store.timeRange === "long_term"}
-        on:click={() => (store.timeRange = "long_term")}>AT</button
+        on:click={() => (store.timeRange = "long_term")}>All Time</button
       >
     </div>
     <div
@@ -64,11 +64,11 @@
     >
       <button
         class:active={store.type === "tracks"}
-        on:click={() => (store.type = "tracks")}>T</button
+        on:click={() => (store.type = "tracks")}>🎵</button
       >
       <button
         class:active={store.type === "artists"}
-        on:click={() => (store.type = "artists")}>A</button
+        on:click={() => (store.type = "artists")}>👤</button
       >
     </div>
   </div>
