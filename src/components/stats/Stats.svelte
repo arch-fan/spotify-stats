@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { ApiTokenRes } from "@/types";
-  import { fade } from "svelte/transition";
   import Tracks from "./Tracks.svelte";
   import Artists from "./Artists.svelte";
   import store from "./store.svelte";
+  import h2c from "html2canvas-pro";
 
   let auth = JSON.parse(
     localStorage.getItem("auth_object") as string
@@ -39,6 +39,25 @@
       }
     })();
   });
+
+  let top: HTMLDivElement;
+  let imageLoading = $state(false);
+
+  const handlePhoto = async () => {
+    imageLoading = true;
+
+    const canvas = await h2c(top, {
+      backgroundColor: "#000",
+      useCORS: true,
+      scale: 4,
+    });
+    const url = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = "top-tracks.png";
+    link.href = url;
+    link.click();
+    imageLoading = false;
+  };
 </script>
 
 <main class="flex flex-col gap-2 w-full">
@@ -72,11 +91,17 @@
       >
     </div>
   </div>
-  {#if store.type === "tracks"}
-    <Tracks />
-  {:else if store.type === "artists"}
-    <Artists />
-  {/if}
+  <button
+    class="border rounded py-1 hover:bg-white/10 transition-all active:bg-white/20"
+    on:click={handlePhoto}>{imageLoading ? "Loading..." : "📸Photo"}</button
+  >
+  <div bind:this={top}>
+    {#if store.type === "tracks"}
+      <Tracks />
+    {:else if store.type === "artists"}
+      <Artists />
+    {/if}
+  </div>
 </main>
 
 <style>

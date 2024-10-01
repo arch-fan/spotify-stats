@@ -2,7 +2,7 @@
 import Link from "@/components/ui/Link.astro";
 import { redirectUri } from "@/constants";
 
-const { PUBLIC_SPOTIFY_CLIENT_ID, DEV, SITE } = import.meta.env;
+const { PUBLIC_SPOTIFY_CLIENT_ID } = import.meta.env;
 
 const spotifyQueryParams = new URLSearchParams({
   client_id: PUBLIC_SPOTIFY_CLIENT_ID,
