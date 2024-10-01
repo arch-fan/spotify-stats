@@ -67,15 +67,15 @@
     >
       <button
         class:active={store.timeRange === "short_term"}
-        on:click={() => (store.timeRange = "short_term")}>1 Month</button
+        onclick={() => (store.timeRange = "short_term")}>1 Month</button
       >
       <button
         class:active={store.timeRange === "medium_term"}
-        on:click={() => (store.timeRange = "medium_term")}>3 Months</button
+        onclick={() => (store.timeRange = "medium_term")}>3 Months</button
       >
       <button
         class:active={store.timeRange === "long_term"}
-        on:click={() => (store.timeRange = "long_term")}>All Time</button
+        onclick={() => (store.timeRange = "long_term")}>All Time</button
       >
     </div>
     <div
@@ -83,17 +83,17 @@
     >
       <button
         class:active={store.type === "tracks"}
-        on:click={() => (store.type = "tracks")}>🎵</button
+        onclick={() => (store.type = "tracks")}>🎵</button
       >
       <button
         class:active={store.type === "artists"}
-        on:click={() => (store.type = "artists")}>👤</button
+        onclick={() => (store.type = "artists")}>👤</button
       >
     </div>
   </div>
   <button
     class="border rounded py-1 hover:bg-white/10 transition-all active:bg-white/20"
-    on:click={handlePhoto}>{imageLoading ? "Loading..." : "📸Photo"}</button
+    onclick={handlePhoto}>{imageLoading ? "Loading..." : "📸Photo"}</button
   >
   <div bind:this={top}>
     {#if store.type === "tracks"}
