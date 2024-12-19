@@ -3,7 +3,6 @@
   import Tracks from "./Tracks.svelte";
   import Artists from "./Artists.svelte";
   import store from "./store.svelte";
-  import h2c from "html2canvas-pro";
 
   let auth = JSON.parse(
     localStorage.getItem("auth_object") as string
@@ -45,6 +44,8 @@
 
   const handlePhoto = async () => {
     imageLoading = true;
+
+    const h2c = (await import("html2canvas-pro")).default;
 
     const canvas = await h2c(top, {
       backgroundColor: "#000",
